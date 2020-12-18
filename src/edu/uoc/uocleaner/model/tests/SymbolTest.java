@@ -11,7 +11,7 @@ class SymbolTest {
 	@Test
 	void testGetName() {
 		assertEquals(Symbol.CORRIDOR, Symbol.getName(' '));
-		assertEquals(Symbol.DIRT, Symbol.getName('·'));
+		assertEquals(Symbol.DIRT, Symbol.getName('Â·'));
 		assertEquals(Symbol.DUMPSTER, Symbol.getName('D'));
 		assertEquals(Symbol.DUSTBALL, Symbol.getName('@'));
 		assertEquals(Symbol.VACUUM, Symbol.getName('V'));
@@ -21,7 +21,7 @@ class SymbolTest {
 	@Test
 	void testGetAscii() {
 		assertEquals(' ',Symbol.CORRIDOR.getAscii());
-		assertEquals('·',Symbol.DIRT.getAscii());
+		assertEquals('Â·',Symbol.DIRT.getAscii());
 		assertEquals('D',Symbol.DUMPSTER.getAscii());
 		assertEquals('@',Symbol.DUSTBALL.getAscii());
 		assertEquals('V',Symbol.VACUUM.getAscii());
@@ -41,7 +41,7 @@ class SymbolTest {
 	@Test
 	void testToString() {
 		assertEquals(" ",Symbol.CORRIDOR.toString());
-		assertEquals("·",Symbol.DIRT.toString());
+		assertEquals("Â·",Symbol.DIRT.toString());
 		assertEquals("D",Symbol.DUMPSTER.toString());
 		assertEquals("@",Symbol.DUSTBALL.toString());
 		assertEquals("V",Symbol.VACUUM.toString());

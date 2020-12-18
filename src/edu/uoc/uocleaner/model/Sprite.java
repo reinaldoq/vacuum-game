@@ -5,9 +5,9 @@ public class Sprite {
 	private int column;
 	private Symbol symbol;
 	
-	Sprite( int row, int colunm, Symbol symbol){
+	public Sprite( int row, int colunm, Symbol symbol){
 		this.setRow(row);
-		this.setColunm(column);
+		this.setColumn(column);
 		this.setSymbol(symbol);
 	}
 	
@@ -23,7 +23,7 @@ public class Sprite {
 		this.row = row;
 	}
 	
-	public void setColunm(int column) {
+	public void setColumn(int column) {
 		this.column = column;
 	}
 	

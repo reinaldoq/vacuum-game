@@ -18,6 +18,11 @@ public class Vacuum extends Sprite {
 		this.setUnder(under);
 	}
 	
+	public Vacuum (int row, int column, int maxCapacity) {
+		super(row, column,Symbol.VACUUM);
+		this.MAX_CAPACITY = maxCapacity;
+	}
+	
 	public int getCapacity() {
 		return this.capacity;
 	}

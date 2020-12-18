@@ -9,7 +9,7 @@ public enum Symbol {
 	CORRIDOR (' ', "");
 	
 	
-	public Symbol getName(char ascii) {
+	public static Symbol getName(char ascii) {
 		if (ascii == '@') {
 			return Symbol.DUSTBALL;
 		}
@@ -47,8 +47,6 @@ public enum Symbol {
 	@Override
 	public String toString() {
 		return String.valueOf(this.ascii);  
-	}
-
-	
+	}	
 	
 }

@@ -37,6 +37,7 @@ public class Level{
 	 * Maximum time which the player has in order to beat the level.
 	 */
 	private int time;
+
 		
 	/**
 	 * Constructor 
@@ -88,74 +89,112 @@ public class Level{
         }        
 	}	
 	
-	void setNumRows(int numRows) {
+	public void setNumRows(int numRows) {
 		this.numRows = numRows;
 	}
 	
-	void setNumColumns(int numColumns) {
+	public void setNumColumns(int numColumns) {
 		this.numColumns = numColumns;
 	}
 	
-	void setImageBackground(String imageBackground) {
+	public void setImageBackground(String imageBackground) {
 		this.imageBackground =imageBackground;
 	}
 	
-	void setTurns(int turns) {
+	public void setTurns(int turns) {
 		this.turns = turns;
 	}
 	
-	void setTime(int time) {
+	public void setTime(int time) {
 		this.time = time;
 	}
 	
-	void decTime(){
+	public void decTime(){
 		this.time = this.time - 1;
 	}
 	
-	void decTurns() {
+	public void decTurns() {
 		this.turns = this.turns - 1;
 	}
 	
-	java.util.List<Sprite> get1DBoard(){
+	public List<Sprite> get1DBoard(){
 		
-		List<Sprite> fila_acumulada = new List<Sprite> {};
+		List<Sprite> fila_acumulada = new ArrayList<Sprite>();
 		
-		for (int i = 0; i < this.board.length; ++i) {
-			fila_acumulada = this.board[i];
-		}
+        for (int row = 0; row < numRows; row++) {
+			for (int column = 0; column < numColumns; column++) {	
+				fila_acumulada.add(this.board[row][column]);
+			}			
+        }        
 		return fila_acumulada;
 	}
 	
-	Sprite getCell(int row, int col) {
-		this.board
+	public Sprite getCell(int row, int col) {
+		return this.board[row][col];
 	}
 
-	String getImageBackground() {
+	public String getImageBackground() {
 		return this.imageBackground;
 	}
 	
-	int getNumColumns() {
+	public int getNumColumns() {
 		return this.numColumns;
 	}
 	
-	int getNumRows() {
-		return this.numColumns;
+	public int getNumRows() {
+		return this.numRows;
 	}
 	
-	int getTime() {
+	public int getTime() {
 		return this.time;
 	}
 	
-	int getTurns() {
+	public int getTurns() {
 		return this.turns;
 	}
 	
 	private int	putColumnInRange​(int column) {
+		if (column > this.numColumns -1 ) {
+			return this.numColumns - 1;
+		}
 		
+		return column;
 	}
 	
 	private int	putRowInRange​(int row) {
-		
+		if (row > this.numRows -1 ) {
+			return this.numRows - 1;
+		}
+		return row;
 	}
+	
+	public void setCell​(int row, int column, Sprite sprite) {
+		sprite.setColunm(column);
+		sprite.setRow(row);
+		
+		this.board[row][column] = sprite;
+	}
+	
+	public void setCell​(Sprite sprite) {
+		this.board[sprite.getRow()][sprite.getColunm()] = sprite;
+	}
+	
+	@Override
+	public String toString() {
+				
+		StringBuilder str = new StringBuilder();
+	    
+	    this.get1DBoard().stream().forEach(c -> {
+	    	str.append(c.toString());
+	    });
+		
+		return str.toString(); 
+	}
+
+
+	
+	
+	
+	
 	
 }
