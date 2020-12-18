@@ -5,7 +5,7 @@ public class Sprite {
 	private int column;
 	private Symbol symbol;
 	
-	public Sprite( int row, int colunm, Symbol symbol){
+	Sprite( int row, int colunm, Symbol symbol){
 		this.setRow(row);
 		this.setColumn(column);
 		this.setSymbol(symbol);
