@@ -34,16 +34,16 @@ class LevelTest {
 	    	str.append(c.toString());
 	    });
 		
-	    assertEquals("·   D##  · ########· ##    ·· @####  ##   ·    # ··  ##  ##########  ##  ########### ##        # V     ·    #   #### #   ##   # ·    #   # ### ·### ·#   #     #",str.toString());
+	    assertEquals("ï¿½   D##  ï¿½ ########ï¿½ ##    ï¿½ï¿½ @####  ##   ï¿½    # ï¿½ï¿½  ##  ##########  ##  ########### ##        # V     ï¿½    #   #### #   ##   # ï¿½    #   # ### ï¿½### ï¿½#   #     #",str.toString());
 	}
 
 	@Test
 	void testGetCell() {
 		assertEquals("D",level.getCell(0, 4).toString());
 		assertEquals("D",level.getCell(-1, 4).toString()); //(0,4)
-		assertEquals("·",level.getCell(0, -1).toString()); //(0,0)
+		assertEquals("ï¿½",level.getCell(0, -1).toString()); //(0,0)
 		assertEquals("#",level.getCell(0, 80).toString()); //last sprite of the first row
-		assertEquals("·",level.getCell(-20, -1).toString());//first sprite (0,0)
+		assertEquals("ï¿½",level.getCell(-20, -1).toString());//first sprite (0,0)
 		assertEquals("#",level.getCell(100, 80).toString()); //last sprite of the last row
 	}
 
@@ -53,10 +53,10 @@ class LevelTest {
 		
 		try{
 			corridor = new Corridor(0,0);
-			level.setCell(corridor);
+			level.setCellâ€‹(corridor);
 			assertEquals(corridor,level.getCell(0,0));
 			assertEquals(0,corridor.getRow());
-			assertEquals(0,corridor.getColumn());
+			assertEquals(0,corridor.getColunm());
 		} catch (SpriteException e) {			
 			e.printStackTrace();
 			fail("testLevel failed");
@@ -69,10 +69,10 @@ class LevelTest {
 		
 		try{
 			corridor = new Corridor(0,0);
-			level.setCell(1,2,corridor);
+			level.setCellâ€‹(1,2,corridor);
 			assertEquals(corridor,level.getCell(1,2));
 			assertEquals(1,corridor.getRow());
-			assertEquals(2,corridor.getColumn());
+			assertEquals(2,corridor.getColunm());
 		} catch (SpriteException e) {			
 			e.printStackTrace();
 			fail("testSetCellIntIntSprite failed");
@@ -153,7 +153,7 @@ class LevelTest {
 	@Test
 	void testToString() {
 		assertEquals(level.toString().lastIndexOf("\n"),level.toString().length()-1);
-		assertEquals("·   D##  · ########· ##    ·· @####  ##   ·    # ··  ##  ##########  ##  ########### ##        # V     ·    #   #### #   ##   # ·    #   # ### ·### ·#   #     #",level.toString().replaceAll("\n|\r\n", ""));
+		assertEquals("ï¿½   D##  ï¿½ ########ï¿½ ##    ï¿½ï¿½ @####  ##   ï¿½    # ï¿½ï¿½  ##  ##########  ##  ########### ##        # V     ï¿½    #   #### #   ##   # ï¿½    #   # ### ï¿½### ï¿½#   #     #",level.toString().replaceAll("\n|\r\n", ""));
 	}
 
 }
