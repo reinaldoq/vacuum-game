@@ -2,7 +2,7 @@ package edu.uoc.uocleaner.model;
 
 public class Wall extends Sprite {
 	
-	Wall (int row, int column){
+	public Wall (int row, int column) throws SpriteException{
 		super(row, column, Symbol.WALL);
 	}
 }

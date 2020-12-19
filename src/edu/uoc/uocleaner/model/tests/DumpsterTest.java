@@ -35,11 +35,11 @@ class DumpsterTest {
 
 	@Test
 	void testAddLoad() {
-		DumpsterException ex = assertThrows(DumpsterException.class, () -> dumpster.addLoad(-20));
+		DumpsterException ex = assertThrows(DumpsterException.class, () -> dumpster.addLoad​(-20));
 		assertEquals(DumpsterException.ERROR_LOAD_NEGATIVE_VALUE,ex.getMessage());
 		
 		try {
-			dumpster.addLoad(5);
+			dumpster.addLoad​(5);
 		} catch (DumpsterException e1) {			
 			e1.printStackTrace();
 			fail("testAddLoad failed - Case 1");
@@ -47,7 +47,7 @@ class DumpsterTest {
 		assertEquals(5,dumpster.getLoad());
 		
 		try {
-			dumpster.addLoad(8);
+			dumpster.addLoad​(8);
 		} catch (DumpsterException e) {
 			e.printStackTrace();
 			fail("testAddLoad failed - Case 2");

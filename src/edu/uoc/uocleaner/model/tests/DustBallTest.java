@@ -57,44 +57,58 @@ class DustBallTest {
 	@Test
 	void testMoveRandomly() {
 		try {
-			Level level = new Level("levels/level1.txt");
+			Level level = new Level("10\r\n"
+					+ "16\r\n"
+					+ "level1.png\r\n"
+					+ "75\r\n"
+					+ "200\r\n"
+					+ "∑   D##  ∑ #####\r\n"
+					+ "###∑ ##    ∑∑ @#\r\n"
+					+ "###  ##   ∑    #\r\n"
+					+ " ∑∑  ##  #######\r\n"
+					+ "###  ##  #######\r\n"
+					+ "#### ##        #\r\n"
+					+ " V     ∑    #   \r\n"
+					+ "#### #   ##   # \r\n"
+					+ "∑    #   # ### ∑\r\n"
+					+ "### ∑#   #     #\n");
 			
 			//Test 1
 			
 			dustball = (DustBall) level.getCell(1,14);			
-			assertTrue(dustball.moveRandomly(level).stream().allMatch(p -> check(p,
+			assertTrue(dustball.moveRandomly​(level).stream().allMatch(p -> check(p,
 					new ArrayList<int[]>(Arrays.asList(new int[][]{new int[]{1,13}, new int[]{2,14}}))					
 					)));			
 			
 			//Test 2
 			
-			level.setCell(3,0,dustball);
+			level.setCell​(3,0,dustball);
 			
-			assertTrue(dustball.moveRandomly(level).stream().allMatch(p -> check(p,
+			assertTrue(dustball.moveRandomly​(level).stream().allMatch(p -> check(p,
 					new ArrayList<int[]>(Arrays.asList(new int[][]{new int[]{3,1}}))					
 					)));
 			
 			//Test 3
 			
-			level.setCell(9,3,dustball);
+			level.setCell​(9,3,dustball);
 			
-			assertTrue(dustball.moveRandomly(level).stream().allMatch(p -> check(p,
+			assertTrue(dustball.moveRandomly​(level).stream().allMatch(p -> check(p,
 					new ArrayList<int[]>(Arrays.asList(new int[][]{new int[]{9,4},new int[]{8,3}}))					
 					)));	
 		
 			//Test 4
 			
-			level.setCell(6,0,dustball);
+			level.setCell​(6,0,dustball);
 			
-			assertTrue(dustball.moveRandomly(level).stream().allMatch(p -> check(p,
+			assertTrue(dustball.moveRandomly​(level).stream().allMatch(p -> check(p,
 					new ArrayList<int[]>(Arrays.asList(new int[][]{}))					
 					)));
 			
 			//Test 5
 			
-			level.setCell(1,10,dustball);
+			level.setCell​(1,10,dustball);
 			
-			assertTrue(dustball.moveRandomly(level).stream().allMatch(p -> check(p,
+			assertTrue(dustball.moveRandomly​(level).stream().allMatch(p -> check(p,
 					new ArrayList<int[]>(Arrays.asList(new int[][]{new int[]{1,11},new int[]{0,10},new int[] {1,9},new int[] {2,10}}))					
 					)));	
 		

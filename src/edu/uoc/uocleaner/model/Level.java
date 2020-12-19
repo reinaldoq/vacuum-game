@@ -54,8 +54,11 @@ public class Level{
 		boolean isDumpster = false, isDirt = false;
 		int numVacuums = 0;		
 		
-		Scanner sc = new Scanner(new File(fileName));
+		
+		//System.out.print(new Scanner(new File(fileName)));
 
+		Scanner sc = new Scanner(fileName);
+		
 		// find the number of rows and columns       
         setNumRows(Integer.parseInt(sc.nextLine()));
         setNumColumns(Integer.parseInt(sc.nextLine()));
@@ -109,11 +112,22 @@ public class Level{
 		this.time = time;
 	}
 	
-	public void decTime(){
+	public void decTime() throws LevelException {
+		
+		if (this.time <= 0) {
+
+			throw new LevelException(LevelException.ERROR_NUM_TIME_INCORRECT);
+		}
 		this.time = this.time - 1;
 	}
 	
-	public void decTurns() {
+	public void decTurns() throws LevelException {
+		if (this.turns <= 0) {
+
+			throw new LevelException(LevelException.ERROR_NUM_TURNS_INCORRECT);
+		}
+		
+		
 		this.turns = this.turns - 1;
 	}
 	
@@ -130,7 +144,14 @@ public class Level{
 	}
 	
 	public Sprite getCell(int row, int col) {
-		return this.board[row][col];
+		int new_row = this.putRowInRange​(row);
+		int new_column = this.putColumnInRange​(col);
+		
+		System.out.println(new_row);
+		System.out.println(new_column);
+
+		
+		return this.board[new_row][new_column];
 	}
 
 	public String getImageBackground() {
@@ -158,6 +179,10 @@ public class Level{
 			return this.numColumns - 1;
 		}
 		
+		if (column < 0) {
+			return 0;
+		}
+		
 		return column;
 	}
 	
@@ -165,28 +190,42 @@ public class Level{
 		if (row > this.numRows -1 ) {
 			return this.numRows - 1;
 		}
+		
+		if (row < 0 ) {
+			return 0;
+		}
 		return row;
 	}
 	
-	public void setCell​(int row, int column, Sprite sprite) {
-		sprite.setColunm(column);
+	public void setCell​(int row, int column, Sprite sprite) throws SpriteException {
+
+		
+		sprite.setColumn(column);
 		sprite.setRow(row);
 		
 		this.board[row][column] = sprite;
 	}
 	
 	public void setCell​(Sprite sprite) {
-		this.board[sprite.getRow()][sprite.getColunm()] = sprite;
+
+		this.board[sprite.getRow()][sprite.getColumn()] = sprite;
 	}
 	
 	@Override
 	public String toString() {
+		
+		
 				
 		StringBuilder str = new StringBuilder();
 	    
-	    this.get1DBoard().stream().forEach(c -> {
-	    	str.append(c.toString());
-	    });
+		for (int row = 0; row < this.getNumRows(); row++) {
+			for (int column = 0; column < this.getNumColumns(); column++) {	
+				Sprite element = this.getCell(row, column);
+				str.append(element.toString());
+			}			
+			str.append("\n");
+        }      
+        
 		
 		return str.toString(); 
 	}

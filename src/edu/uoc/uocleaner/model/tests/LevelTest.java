@@ -19,7 +19,21 @@ class LevelTest {
 	@BeforeEach
 	void testLevel() {
 		try {
-			level = new Level("levels/level1.txt");
+			level = new Level("10\r\n"
+					+ "16\r\n"
+					+ "level1.png\r\n"
+					+ "75\r\n"
+					+ "200\r\n"
+					+ "∑   D##  ∑ #####\r\n"
+					+ "###∑ ##    ∑∑ @#\r\n"
+					+ "###  ##   ∑    #\r\n"
+					+ " ∑∑  ##  #######\r\n"
+					+ "###  ##  #######\r\n"
+					+ "#### ##        #\r\n"
+					+ " V     ∑    #   \r\n"
+					+ "#### #   ##   # \r\n"
+					+ "∑    #   # ### ∑\r\n"
+					+ "### ∑#   #     #\n");
 		} catch (FileNotFoundException | LevelException | VacuumException | SpriteException e) {			
 			e.printStackTrace();
 			fail("testLevel failed");
@@ -56,11 +70,11 @@ class LevelTest {
 			level.setCell​(corridor);
 			assertEquals(corridor,level.getCell(0,0));
 			assertEquals(0,corridor.getRow());
-			assertEquals(0,corridor.getColunm());
+			assertEquals(0,corridor.getColumn());
 		} catch (SpriteException e) {			
 			e.printStackTrace();
 			fail("testLevel failed");
-		}		
+		}			
 	}
 
 	@Test
@@ -72,7 +86,7 @@ class LevelTest {
 			level.setCell​(1,2,corridor);
 			assertEquals(corridor,level.getCell(1,2));
 			assertEquals(1,corridor.getRow());
-			assertEquals(2,corridor.getColunm());
+			assertEquals(2,corridor.getColumn());
 		} catch (SpriteException e) {			
 			e.printStackTrace();
 			fail("testSetCellIntIntSprite failed");

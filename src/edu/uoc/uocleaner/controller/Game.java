@@ -98,7 +98,7 @@ public class Game {
 	 * @return True if there are no more levels and thus the game is finished. Otherwise, false.
 	 */
 	private boolean isFinished() {
-		//TODO
+		return this.numLevel == this.MAX_LEVELS;
 	}
 	
 	/**
@@ -118,7 +118,16 @@ public class Game {
 	 * @throws SpriteException When there is a Sprite exception/problem.
 	 */
 	public boolean nextLevel() throws FileNotFoundException, LevelException, VacuumException, SpriteException {		
-		//TODO		
+		this.totalScore = this.totalScore + this.levelScore;
+		this.levelScore = 0;
+		
+		if (this.isFinished()) {
+			return false;
+		} else {
+			this.numLevel = this.numLevel + 1;
+			this.loadLevel();
+			return true;
+		}
 	}
 	
 	/**
@@ -129,7 +138,21 @@ public class Game {
 	 * @throws SpriteException When there is a Sprite exception/problem.
 	 */
 	private void loadLevel() throws FileNotFoundException, LevelException, VacuumException, SpriteException {
-		level = new Level(getFileFolder()+"level"+numLevel+".txt");
+		level = new Level("10\r\n"
+				+ "16\r\n"
+				+ "level1.png\r\n"
+				+ "75\r\n"
+				+ "200\r\n"
+				+ "∑   D##  ∑ #####\r\n"
+				+ "###∑ ##    ∑∑ @#\r\n"
+				+ "###  ##   ∑    #\r\n"
+				+ " ∑∑  ##  #######\r\n"
+				+ "###  ##  #######\r\n"
+				+ "#### ##        #\r\n"
+				+ " V     ∑    #   \r\n"
+				+ "#### #   ##   # \r\n"
+				+ "∑    #   # ### ∑\r\n"
+				+ "### ∑#   #     #\n");
 		huocver =  (Vacuum) level.get1DBoard().stream().filter(p -> p instanceof Vacuum).findAny().get();		
 	}
 	
@@ -150,7 +173,31 @@ public class Game {
 	 * @return true if this level is beaten, otherwise false.
 	 */
 	public boolean isLevelBeaten() {
-		//TODO		
+	
+        for (int row = 0; row < level.getNumRows(); row++) {
+			for (int column = 0; column < level.getNumColumns(); column++) {	
+				Sprite element = level.getCell(row, column);
+				
+				if (element.getSymbol() == Symbol.DIRT) {
+					return false;
+				}
+				
+				if (element.getSymbol() == Symbol.DUSTBALL) {
+					return false;
+				}
+				
+				if (element.getSymbol() == Symbol.VACUUM) {
+					
+					Vacuum casted = (Vacuum) element;
+					if (casted.getCapacity() != 0) {
+						return false;
+					}
+				}
+			}			
+        }      
+        
+        return true;
+        
 	}
 	
 	/**
@@ -271,7 +318,7 @@ public class Game {
 			Sprite nextSprite = level.getCell(row + dRow, col + dCol);
 	    	
 	    	if (!(nextSprite instanceof Wall)){
-	    		level.setCell(row, col, huocver.getUnder()); 
+	    		level.setCell​(row, col, huocver.getUnder()); 
 	    		
 	    		//we store the sprite in order to repaint it after passing its position
 	    		huocver.setUnder(nextSprite);
@@ -289,7 +336,7 @@ public class Game {
 	    		}
 	    		
 	    		huocver.moveTo(row + dRow, col + dCol);
-	    		level.setCell(huocver);    		
+	    		level.setCell​(huocver);    		
 	    	}
 		}		
 	}
@@ -318,7 +365,16 @@ public class Game {
 	 * Moves all the dustballs that are in the level/room.	  
 	 */
 	private void moveDustBalls(){	
-		//TODO		
+	       for (int row = 0; row < level.getNumRows(); row++) {
+				for (int column = 0; column < level.getNumColumns(); column++) {	
+					Sprite element = level.getCell(row, column);
+					
+					if (element.getSymbol() == Symbol.DUSTBALL) {
+						DustBall casted = (DustBall) element;
+						casted.moveRandomly​(level);
+					}
+				}			
+	        }    
 	}	
 	
 	/**

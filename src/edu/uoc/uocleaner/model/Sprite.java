@@ -5,7 +5,7 @@ public class Sprite {
 	private int column;
 	private Symbol symbol;
 	
-	Sprite( int row, int colunm, Symbol symbol){
+	Sprite( int row, int column, Symbol symbol) throws SpriteException{
 		this.setRow(row);
 		this.setColumn(column);
 		this.setSymbol(symbol);
@@ -15,15 +15,24 @@ public class Sprite {
 		return this.row;
 	}
 	
-	public int getColunm () {
+	public int getColumn () {
 		return this.column;
 	}
 	
-	public void setRow(int row) {
+	public void setRow(int row) throws SpriteException {
+		if (row <0) {
+			throw new SpriteException( SpriteException.ERROR_INDEX_ROW_INCORRECT );
+		}
+		
+		
 		this.row = row;
 	}
 	
-	public void setColumn(int column) {
+	public void setColumn(int column) throws SpriteException {
+		if (column <0) {
+			throw new SpriteException( SpriteException.ERROR_INDEX_COLUMN_INCORRECT );
+		}
+		
 		this.column = column;
 	}
 	
@@ -38,9 +47,9 @@ public class Sprite {
 	@Override
 	public boolean equals(Object other) {
 		Sprite casted = (Sprite) other;
-		if (this.symbol.toString() == casted.symbol.toString() ) {
+		if ((int)this.symbol.toString().charAt(0) == (int)casted.symbol.toString().charAt(0) ) {
 			if (this.row == casted.row) {
-				if (this.column == casted.row) {
+				if (this.column == casted.column) {
 					return true;
 				}
 			}
